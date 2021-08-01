@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app version="5.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee                       
+https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
+ <servlet>
+    <description></description>
+    <display-name>RegistrationForm</display-name>
+    <servlet-name>Form</servlet-name>
+    <servlet-class>Form</servlet-class>
+  </servlet>
+  <servlet-mapping>
+   	<servlet-name>Form</servlet-name>
+    <url-pattern>/Form</url-pattern>
+  </servlet-mapping>
+  <context-param> 
+      <description>Location to store uploaded file</description> 
+      <param-name>file-upload</param-name> 
+      <param-value>
+         /home/harsh/eclipse-workspace/RegistrationForm/src/main/webapp/data/
+      </param-value> 
+ </context-param>
+  <servlet>
+    <description></description>
+    <display-name>RegistrationForm</display-name>
+    <servlet-name>validation</servlet-name>
+    <servlet-class>validation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+   	<servlet-name>validation</servlet-name>
+    <url-pattern>/validation</url-pattern>
+  </servlet-mapping>
+
+</web-app>
