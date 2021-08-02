@@ -52,7 +52,9 @@ public class Form extends HttpServlet{
 			  }
 			}
 		}catch(Exception e){
-			res.sendRedirect(req.getContextPath()+"/Error.html");
+			Cookie er = new Cookie("error",e.toString());
+			res.addCookie(er);
+			res.sendRedirect(req.getContextPath()+"/Error.jsp");
 			System.out.println(e);
 		}
 		

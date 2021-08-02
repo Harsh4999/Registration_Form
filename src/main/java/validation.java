@@ -42,10 +42,17 @@ public class validation extends HttpServlet{
 				}
 			}
 			if(q==0){
-				res.sendRedirect("http://localhost:8080/RegistrationForm/Error.html");	
+				/*
+				 * String x="wrongusernameorpassword"; Cookie er = new Cookie("error",x);
+				 * res.addCookie(er);
+				 * res.sendRedirect("http://localhost:8080/RegistrationForm/Error.jsp");
+				 */
+				throw new Exception();
 			}
 		}catch(Exception e) {
-			
+			Cookie er = new Cookie("error",e.toString());
+			res.addCookie(er);
+			res.sendRedirect("http://localhost:8080/RegistrationForm/Error.jsp");
 		}
 		
 		
