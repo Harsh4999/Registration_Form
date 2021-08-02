@@ -12,63 +12,58 @@
 </head>
 <body>
 <!-- navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-  
-    <a class="navbar-brand" href="#"><img src="https://picsum.photos/200" class="rounded" alt="..." width="30" height="24"></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      <!--   <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li> -->
-        <li class="nav-item">
-        	<%
-        		Cookie cookies[] = request.getCookies();
-        		for(int i=0;i<cookies.length;i++){
-        			System.out.println(cookies[i].getName());
-        			System.out.println(cookies[i].getValue());
-        			String x=cookies[i].getName();
-        			if(x.equals("Name")){
-        				%>
-        					<B><%=cookies[i].getValue()%></B>
-        				<% 
-        			}
-        		}
-       		 %>
-        
-        </li>
-      </ul> 
-      
-      
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
+<%
 
-<!-- <img src="https://res.cloudinary.com/dy9tzgg9i/image/upload/v1627811866/sample.jpg" alt="ddd"> -->
+Class.forName("oracle.jdbc.driver.OracleDriver");
+Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","toor");
+Statement stmt = conn.createStatement();
+Cookie cks[] = request.getCookies();
+for(int i=0;i<cks.length;i++){
+	String x1=cks[i].getName();
+	if(x1.equals("roll")){
+	%>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		  <div class="container-fluid">
+		    <a class="navbar-brand" href="#"> <img src="http://localhost:8080/RegistrationForm/get_img?id=<%=cks[i].getValue()%>" alt="dd" class="rounded-circle" hieght="24" width="30"></a>
+		    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		      <span class="navbar-toggler-icon"></span>
+		    </button>
+		    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+		        <li class="nav-item">
+		        	<%
+		        		Cookie cookies[] = request.getCookies();
+		        		for(int j=0;j<cookies.length;j++){
+		        			System.out.println(cookies[j].getName());
+		        			System.out.println(cookies[j].getValue());
+		        			String x=cookies[j].getName();
+		        			if(x.equals("Name")){
+		        				%>
+		        					<B><%=cookies[j].getValue()%></B>
+		        				<% 
+		        			}
+		        		}
+		       		 %>
+		        
+		        </li>
+		      </ul> 
+		      
+		      
+		      <form class="d-flex" action="/RegistrationForm/index.jsp" method="post">
+		        
+		        <button class="btn btn-outline-success" type="submit">Logout</button>
+		      </form>
+		    </div>
+		  </div>
+		</nav>
+		<%
+		
+	}
+}
+%>
+
+
+ 
 
 
 
@@ -82,11 +77,9 @@
 
 <%
 
-Class.forName("oracle.jdbc.driver.OracleDriver");
-Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","system","toor");
-Statement stmt = conn.createStatement();
-ResultSet rs = stmt.executeQuery("SELECT * FROM SMARK");
 
+ResultSet rs = stmt.executeQuery("SELECT * FROM SMARK");
+Cookie cookies[] = request.getCookies();
 String l;
 int roll;
 for(int i=0;i<cookies.length;i++){
@@ -210,7 +203,7 @@ for(int i=0;i<cookies.length;i++){
 </div>
 </div>
 
- 
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
  
 </body>

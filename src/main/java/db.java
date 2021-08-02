@@ -1,4 +1,7 @@
 import java.sql.*;
+import jakarta.servlet.http.*;
+
+
 import java.io.*;
 public class db {
 	public static int insert(String name,String std,int roll,String username,String password,String imgName,String imgPath){
@@ -33,6 +36,8 @@ public class db {
 			ps.close();
 			return 1;
 		}catch(Exception e){
+			//Cookie cs = new Cookie("error",e.toString());
+		
 			System.out.println(e);
 			return 0;
 		}
